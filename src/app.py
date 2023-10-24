@@ -44,7 +44,7 @@ def delete_family_member(member_id):
     eliminar_familiar = jackson_family.delete_member(member_id)
     if eliminar_familiar:
         return jsonify({"done": True}), 200
-    return jsonify({"Familiar no encontrado"}), 400
+    return jsonify({"msg":"Familiar no encontrado"}), 400
 
 @app.route('/member/<int:member_id>', methods=['PUT'])
 def update_family_member(member_id):
@@ -52,14 +52,15 @@ def update_family_member(member_id):
     actualizar_family_member = jackson_family.update_member(member_id, new_member)
     if not actualizar_family_member:
         return jsonify({"msg": "miembro no encontrado"}), 400
-    return jsonify({"Familiar actualizado"}), 200
+    return jsonify({"msg":"Familiar actualizado"}), 200
 
 @app.route('/member/<int:member_id>', methods=['GET'])
 def get_one_member(member_id):
     familiar_encontrado = jackson_family.get_member(member_id)
     if not familiar_encontrado:
         return jsonify({"msg": "Familiar no encontrado"}), 200
-    return jsonify({"Familiar encontrado"}), 200
+    return jsonify(familiar_encontrado), 200
+
     
 
 
