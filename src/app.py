@@ -24,10 +24,8 @@ def sitemap():
 @app.route('/members', methods=['GET'])
 def get_members():
     members = jackson_family.get_all_members()
-    response_body = {
-        "Lista de miembros de la familia": members
-    }
-    return jsonify(response_body), 200
+    
+    return jsonify(members), 200
 
 @app.route('/member', methods=['POST'])
 def add_member():
